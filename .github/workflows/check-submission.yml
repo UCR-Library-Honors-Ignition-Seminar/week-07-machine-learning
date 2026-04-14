@@ -1,0 +1,47 @@
+name: Check Submission
+
+on: [push]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for reflection.md
+        run: |
+          WEEK=$(ls -d week-0* 2>/dev/null | head -1)
+          if [ -z "$WEEK" ]; then
+            echo "::warning::No week folder found. Create a folder named week-XX/ and add your files."
+            exit 0
+          fi
+          if [ ! -f "$WEEK/reflection.md" ]; then
+            echo "::error::Missing $WEEK/reflection.md -- please add your reflection file."
+            exit 1
+          fi
+          echo "reflection.md found"
+      - name: Check reflection word count
+        run: |
+          WEEK=$(ls -d week-0* 2>/dev/null | head -1)
+          if [ -z "$WEEK" ] || [ ! -f "$WEEK/reflection.md" ]; then
+            exit 0
+          fi
+          WORDS=$(wc -w < "$WEEK/reflection.md")
+          echo "Word count: $WORDS"
+          if [ "$WORDS" -lt 250 ]; then
+            echo "::warning::Your reflection.md has $WORDS words. Aim for at least 300 words."
+          else
+            echo "Reflection meets minimum length ($WORDS words)"
+          fi
+      - name: Check for project artifact
+        run: |
+          WEEK=$(ls -d week-0* 2>/dev/null | head -1)
+          if [ -z "$WEEK" ]; then
+            exit 0
+          fi
+          FILE_COUNT=$(find "$WEEK" -type f ! -name "reflection.md" | wc -l)
+          if [ "$FILE_COUNT" -eq 0 ]; then
+            echo "::warning::No project file found in $WEEK/. Remember to upload your project file or add a links.md with your project URL."
+          else
+            echo "Project artifact found ($FILE_COUNT file(s))"
+          fi
