@@ -17,7 +17,7 @@ Build an interactive sketch that uses machine learning as a creative material.
 - Add a brief comment at the top of your code explaining what it does and what model you used
 
 ### Documentation
-In your `week-07/` folder, include:
+Include the following files in your repo:
 - Your sketch file (`.js`, `.html`, or `links.md` with p5.js share link)
 - If you used Teachable Machine: screenshot of your training interface
 - A `training-notes.md` file (see below)
@@ -39,12 +39,11 @@ Write a **~300-word reflection** using the [reflection template](reflection-temp
 
 ## Submission Instructions
 
-1. Create a `week-07/` folder in your GitHub Classroom repo
-2. Add sketch files (or `links.md` with p5 share link)
-3. Add Teachable Machine screenshot (if applicable)
-4. Create `week-07/training-notes.md`
-5. Create `week-07/reflection.md`
-6. Commit and submit repo URL on Canvas
+1. Add sketch files (or `links.md` with p5 share link)
+2. Add Teachable Machine screenshot (if applicable)
+3. Create `training-notes.md`
+4. Create `reflection.md`
+5. Commit and submit repo URL on Canvas
 
 ---
 
