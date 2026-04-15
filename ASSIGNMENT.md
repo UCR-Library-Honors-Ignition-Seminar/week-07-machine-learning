@@ -4,56 +4,87 @@
 
 ---
 
-## Project
+## Before You Start
+
+Read the **Background** section in [README.md](README.md) and look at the [Gender Shades](http://gendershades.org/) project before your first session. The critical prompt this week is about data decisions — you need to have made some intentional ones to write about them.
+
+---
+
+## Part 1: Train and Break a Model (Session 1)
+
+Using [Teachable Machine](https://teachablemachine.withgoogle.com):
+
+1. Train an image classifier with at least **2 classes** and at least **50 samples per class**
+2. Test it under normal conditions
+3. **Deliberately try to break it** — change the angle, background, lighting, or show it something visually similar from the other class
+4. Screenshot your training interface
+5. Fill in `training-notes.md` (see below)
+
+This step is required even if you use a pretrained model for Part 2 — the training experience is what makes the reflection meaningful.
+
+---
+
+## Part 2: ml5.js + p5.js Sketch
 
 Build an interactive sketch that uses machine learning as a creative material.
 
-### Requirements
-- Uses **ml5.js** with either:
-  - A model you trained in Teachable Machine, OR
-  - A pretrained ml5 model (MobileNet, PoseNet, handpose, etc.)
-- The model's output drives something **visual or textual** in the sketch
-- Responds to **live input** (webcam, microphone, or image upload)
-- Add a brief comment at the top of your code explaining what it does and what model you used
+**Requirements:**
+- Uses **ml5.js** with one of:
+  - The model you trained in Teachable Machine (export from TM → load in ml5)
+  - A pretrained ml5 model: MobileNet, PoseNet, handpose, or facemesh
+- The model's output **drives something visual or textual** — not just a label displayed as text
+- Responds to **live input** (webcam)
+- Add a comment at the top of your code: what does it do, and what model does it use?
 
-### Documentation
-Include the following files in your repo:
-- Your sketch file (`.js`, `.html`, or `links.md` with p5.js share link)
-- If you used Teachable Machine: screenshot of your training interface
-- A `training-notes.md` file (see below)
+**To submit:**
+- Share via p5.js Web Editor link → save in `links.md`, OR
+- Download and upload files to your repo
 
-### training-notes.md (~100 words)
-Answer: What did you train on? What did you leave out? What broke your model?
+**Step-by-step help:** [INSTRUCTIONS-ML5.md](INSTRUCTIONS-ML5.md)
+
+---
+
+## training-notes.md
+
+Create this file and answer the following (~100 words total):
+
+1. What did you train your model to distinguish?
+2. What data did you collect — how many samples, under what conditions?
+3. What did you deliberately leave out or not vary?
+4. What broke your model, and why do you think it failed there?
 
 ---
 
 ## Reflection
 
-Write a **~300-word reflection** using the [reflection template](reflection-template.md).
+Write a **~300-word reflection** in `reflection.md` using the [reflection template](reflection-template.md).
 
-**This week's critical prompt (Part 3):**
+**This week's critical prompt (Part 3 of the template):**
 
-> *"What did you include in your training data? What did you leave out? What might a model trained on your data misunderstand — and what does that tell you about how ML systems work in the real world?"*
+> *What did you include in your training data? What did you leave out? What might a model trained on your data misunderstand — and what does that tell you about how ML systems work in the real world?*
+
+Connect your own training experience to a real-world ML system. If you left out certain lighting conditions, certain angles, certain people — what does that mean at scale?
 
 ---
 
-## Submission Instructions
+## Submission
 
-1. Add sketch files (or `links.md` with p5 share link)
-2. Add Teachable Machine screenshot (if applicable)
+1. Add your sketch files or `links.md` with share link
+2. Add your Teachable Machine training screenshot
 3. Create `training-notes.md`
-4. Create `reflection.md`
-5. Commit and submit repo URL on Canvas
+4. Create `reflection.md` using the reflection template
+5. Commit your changes and submit your repo URL on Canvas
 
 ---
 
-## Grading Criteria
+## Grading
 
 | Criterion | Points |
 |-----------|--------|
-| Sketch uses ml5.js and responds to live input | 2 |
-| Training notes document data choices | 0.5 |
-| Sketch accessible (link works or HTML runs) | 0.5 |
-| Reflection: all 4 sections (~300 words) | 1.5 |
-| Reflection engages with data ethics and ML bias | 0.5 |
+| Teachable Machine model trained + screenshot included | 0.5 |
+| ml5.js sketch runs and responds to live input | 1.5 |
+| Model output drives something beyond a text label | 0.5 |
+| `training-notes.md` documents data choices and failures | 0.5 |
+| Reflection: all 4 sections, ~300 words | 1 |
+| Reflection connects personal data decisions to real-world ML implications | 0.5 |
 | **Total** | **5** |
