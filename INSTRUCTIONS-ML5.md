@@ -25,11 +25,11 @@ You need to add ml5.js to the editor. In the editor:
 <head>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
-  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
 </head>
 ```
 
-> Use `ml5@0.12.2` — a specific pinned version. Using `ml5@latest` will cause a `classifier.classify is not a function` error because the newest ml5 version changed its API.
+> Use `ml5@0.5.2` — a specific pinned version. Using `ml5@0.5.2` will cause a `classifier.classify is not a function` error because the newest ml5 version changed its API.
 
 ---
 
@@ -81,9 +81,11 @@ function modelReady() {
   classifier.classify(gotResult);
 }
 
-function gotResult(results) {
+// ml5@0.5.2 uses error-first callbacks: (error, results)
+function gotResult(error, results) {
+  if (error) { console.error(error); return; }
   label = results[0].label;
-  confidence = nf(results[0].confidence * 100, 2, 1);
+  confidence = results[0].confidence;
   classifier.classify(gotResult);
 }
 
@@ -96,7 +98,7 @@ function draw() {
   fill(255);
   textSize(20);
   textAlign(LEFT, CENTER);
-  text(label + " (" + confidence + "%)", 10, height - 30);
+  text(label + " — " + nf(confidence * 100, 2, 1) + "%", 10, height - 30);
 }
 ```
 
