@@ -130,7 +130,7 @@ Before writing any code, look at what people have built with ml5 + p5:
   <head>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
-    <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
   </head>
@@ -142,7 +142,7 @@ Before writing any code, look at what people have built with ml5 + p5:
 </html>
 ```
 
-> The only addition to the default file is the ml5 line — but replacing the whole file is simpler than finding exactly where to insert it. Use `ml5@0.5.2` specifically — newer versions changed the API and will cause a `classifier.classify is not a function` error.
+> The only addition to the default file is the ml5 line — but replacing the whole file is simpler than finding exactly where to insert it. Use `ml5@0.12.2` specifically — this is the version the starter code is written for.
 
 5. Click back to `sketch.js` — this is where you write your code
 
@@ -158,31 +158,28 @@ MobileNet is a model pretrained on 1,000 everyday object categories. It reads yo
 
 ```javascript
 // ML5 + p5.js starter: MobileNet image classifier
-// The model reads the webcam and labels what it sees.
-// Change the draw() function to make the label do something visual.
+// The model reads your webcam and labels what it sees.
+// async/await tells the sketch to wait for the model before classifying.
 
 let classifier, video;
 let label = "loading model...";
 let confidence = 0;
 
-function setup() {
+async function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
-  video.hide(); // hide the default HTML video — we draw it manually in draw()
-  classifier = ml5.imageClassifier("MobileNet", video, modelReady);
-}
-
-function modelReady() {
+  video.hide();
+  // wait for MobileNet to load before starting — this takes 5–10 seconds
+  classifier = await ml5.imageClassifier("MobileNet", video);
   console.log("Model ready!");
-  classifier.classify(gotResult); // start the classification loop
+  classifyVideo(); // start the classification loop
 }
 
-// Note: ml5@0.5.2 uses error-first callbacks — (error, results), not just (results)
-function gotResult(error, results) {
-  if (error) { console.error(error); return; }
+async function classifyVideo() {
+  let results = await classifier.classify();  // wait for a result
   label = results[0].label;
   confidence = results[0].confidence;
-  classifier.classify(gotResult); // classify again — keeps the loop going
+  classifyVideo(); // call again immediately — keeps the loop going
 }
 
 function draw() {
@@ -219,7 +216,7 @@ function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
   video.hide();
-  // load PoseNet; when ready it will continuously update poses[]
+  // load PoseNet; modelReady is called when it finishes loading
   poseNet = ml5.poseNet(video, modelReady);
   poseNet.on("pose", function(results) {
     poses = results; // update poses every time a new detection comes in
