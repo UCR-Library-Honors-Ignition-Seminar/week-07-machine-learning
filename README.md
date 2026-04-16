@@ -120,7 +120,7 @@ Before writing any code, look at what people have built with ml5 + p5:
 ### Step 1: Set up the p5.js editor with ml5
 
 1. Go to [editor.p5js.org](https://editor.p5js.org) and sign in
-2. Click the **arrow icon** next to "Sketch Files" (top left panel)
+2. Click the **arrow icon** below the Play button (top left panel)
 3. Click on `index.html` to open it
 4. Select **all** the existing content (Cmd+A / Ctrl+A) and replace it with the complete code below:
 
