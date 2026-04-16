@@ -126,7 +126,7 @@ Before writing any code, look at what people have built with ml5 + p5:
 
 ```html
 <head>
-  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
 </head>
 ```
@@ -156,25 +156,26 @@ let confidence = 0;
 
 function setup() {
   createCanvas(640, 480);
-  // create a webcam feed
   video = createCapture(VIDEO);
-  video.hide(); // hide the default HTML video element — we draw it ourselves in draw()
-  // load MobileNet; when ready, start classifying
+  video.hide(); // hide the default HTML video — we draw it manually in draw()
   classifier = ml5.imageClassifier("MobileNet", video, modelReady);
 }
 
 function modelReady() {
+  console.log("Model ready!");
   classifier.classify(gotResult); // start the classification loop
 }
 
-function gotResult(results) {
-  label = results[0].label;           // the top prediction
-  confidence = results[0].confidence; // how confident (0 to 1)
-  classifier.classify(gotResult);     // classify again immediately — creates a loop
+// Note: ml5@0.5.2 uses error-first callbacks — (error, results), not just (results)
+function gotResult(error, results) {
+  if (error) { console.error(error); return; }
+  label = results[0].label;
+  confidence = results[0].confidence;
+  classifier.classify(gotResult); // classify again — keeps the loop going
 }
 
 function draw() {
-  image(video, 0, 0, width, height);  // draw the webcam on the canvas
+  image(video, 0, 0, width, height);
 
   // display the label — THIS IS WHAT YOU MODIFY
   fill(0, 0, 0, 150);
@@ -264,12 +265,12 @@ function draw() {
 }
 ```
 
-Or use the confidence score to control a shape's size:
+Or use the confidence score to control a shape's size (`confidence` is updated in `gotResult` and available globally):
 ```javascript
 function draw() {
   background(20);
   image(video, 0, 0, width, height);
-  // confidence goes from 0 to 1 — map it to a circle diameter
+  // confidence is 0 to 1 — map it to a circle diameter
   let diameter = map(confidence, 0, 1, 20, 300);
   fill(255, 200, 0, 150);
   noStroke();
