@@ -27,10 +27,8 @@ These are not edge cases or bugs. They are the predictable result of decisions m
 
 ### Recommended viewing before class
 
-- [*Coded Bias*](https://www.codedbias.com/) (2020, documentary) — follows MIT researcher Joy Buolamwini's discovery that facial recognition systems misidentify darker-skinned faces at dramatically higher rates; available on Netflix
-- [Gender Shades project](http://gendershades.org/) — the research that sparked the documentary; interactive results you can explore yourself
-- [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Gene Kogan's free online book; Chapter 1 gives a visual, non-mathematical introduction to how neural networks learn
-
+- [Gender Shades project](http://gendershades.org/) — How well do IBM, Microsoft, and Face++ AI services guess the gender of a face?
+- [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Chapters, guides, demos, code, and more. Explore, read, experiment based on your interest
 ---
 
 ## Session 1 (Day 1): Teachable Machine
