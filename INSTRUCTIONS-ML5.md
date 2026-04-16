@@ -77,10 +77,14 @@ function setup() {
 }
 
 async function classifyVideo() {
-  let results = await classifier.classify(); // wait for a result
-  label = results[0].label;
-  confidence = results[0].confidence;
-  classifyVideo(); // call again — keeps the loop going
+  let results = await classifier.classify();
+  // only update if confidence is above 40% — prevents low-confidence flashing
+  if (results[0].confidence > 0.4) {
+    label = results[0].label;
+    confidence = results[0].confidence;
+  }
+  // wait 800ms before classifying again — gives the model time to stabilize
+  setTimeout(classifyVideo, 800);
 }
 
 function draw() {
