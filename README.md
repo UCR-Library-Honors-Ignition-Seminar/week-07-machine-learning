@@ -112,7 +112,7 @@ Think of it as: *ml5 listens, p5 responds.*
 
 Before writing any code, look at what people have built with ml5 + p5:
 
-- [ml5.js examples gallery](https://learn.ml5js.org/#/reference/image-classifier) — scroll through the examples on the left; each one shows a live demo and the full code
+- [ml5.js examples gallery](https://docs.ml5js.org/#/reference/overview) — scroll through the examples on the left; each one shows a live demo and the full code
 - [The Coding Train ml5 playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y) — short videos showing ml5 sketches being built from scratch
 
 **As you look:** What is the model detecting? What does p5 do with that information — what changes on screen?
@@ -120,7 +120,7 @@ Before writing any code, look at what people have built with ml5 + p5:
 ### Step 1: Set up the p5.js editor with ml5
 
 1. Go to [editor.p5js.org](https://editor.p5js.org) and sign in
-2. Click the **arrow icon** next to "Sketch Files" (top left panel)
+2. Click the **arrow icon** below the Play button (top left panel)
 3. Click on `index.html` to open it
 4. Find the `<head>` section and add the ml5 script tag so it looks like this:
 
