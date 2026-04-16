@@ -16,22 +16,20 @@ You do not need to understand how the model works internally. You need to know: 
 
 Go to [editor.p5js.org](https://editor.p5js.org) and sign in (required to save your work).
 
-You need to load ml5.js in addition to p5.js. In the editor:
+You need to add ml5.js to the editor. In the editor:
 1. Click the **"Sketch Files"** arrow (top left)
 2. Open `index.html`
-3. Add this line in the `<head>` section, above the p5 script tag:
+3. The file already has p5 script tags — **do not delete them.** Add one line after the existing scripts:
 
-```html
-<script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-```
-
-Your `index.html` head should look like:
 ```html
 <head>
-  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
+  <script src="https://unpkg.com/ml5@0.12.2/dist/ml5.min.js"></script>
 </head>
 ```
+
+> Use `ml5@0.12.2` — a specific pinned version. Using `ml5@latest` will cause a `classifier.classify is not a function` error because the newest ml5 version changed its API.
 
 ---
 
