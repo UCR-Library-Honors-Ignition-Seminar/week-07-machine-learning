@@ -1,6 +1,6 @@
 # Week 7: Machine Learning Basics & Creative AI
 
-**Instructor:** Jing | **Weeks 5–8 format:** Critical/Creative Reflection
+**Instructor:** Jing
 
 ---
 
