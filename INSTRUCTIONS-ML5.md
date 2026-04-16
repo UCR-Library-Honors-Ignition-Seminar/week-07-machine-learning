@@ -14,7 +14,7 @@ You do not need to understand how the model works internally. You need to know: 
 
 ## Step 1: Open the p5.js Editor
 
-Go to [editor.p5js.org](https://editor.p5js.org).
+Go to [editor.p5js.org](https://editor.p5js.org) and sign in (required to save your work).
 
 You need to load ml5.js in addition to p5.js. In the editor:
 1. Click the **"Sketch Files"** arrow (top left)
@@ -37,7 +37,7 @@ Your `index.html` head should look like:
 
 ## Step 2: Allow Camera Access
 
-ml5 needs your webcam. When the sketch runs, your browser will ask for camera permission — click Allow.
+ml5 uses your webcam as live input. When the sketch runs, your browser will ask for camera permission — click Allow.
 
 Add this to `setup()` to create a video feed:
 
@@ -63,6 +63,8 @@ Run this first and confirm your camera appears on the canvas before adding ml5.
 
 ### Option A: MobileNet (pretrained, recognizes 1,000 objects)
 
+MobileNet is trained on 1,000 everyday object categories. Point your webcam at things and see what it recognizes — or misrecognizes.
+
 ```javascript
 let classifier, video;
 let label = "loading model...";
@@ -73,25 +75,23 @@ function setup() {
   video = createCapture(VIDEO);
   video.hide();
 
-  // load MobileNet and start classifying when ready
   classifier = ml5.imageClassifier("MobileNet", video, modelReady);
 }
 
 function modelReady() {
   console.log("Model ready!");
-  classifier.classify(gotResult); // start the classification loop
+  classifier.classify(gotResult);
 }
 
 function gotResult(results) {
   label = results[0].label;
-  confidence = nf(results[0].confidence * 100, 2, 1); // format as percentage
-  classifier.classify(gotResult); // classify again immediately
+  confidence = nf(results[0].confidence * 100, 2, 1);
+  classifier.classify(gotResult);
 }
 
 function draw() {
   image(video, 0, 0, width, height);
 
-  // draw label at bottom
   fill(0, 0, 0, 150);
   noStroke();
   rect(0, height - 60, width, 60);
@@ -104,6 +104,8 @@ function draw() {
 
 ### Option B: Your Teachable Machine model
 
+After training your model in Session 1:
+
 1. In Teachable Machine, click **"Export Model"**
 2. Choose **"Tensorflow.js"** → **"Upload (shareable link)"**
 3. Click **"Upload my model"** — you get a URL like `https://teachablemachine.withgoogle.com/models/XXXXXXX/`
@@ -113,9 +115,11 @@ function draw() {
 classifier = ml5.imageClassifier("https://teachablemachine.withgoogle.com/models/XXXXXXX/", video, modelReady);
 ```
 
-Everything else stays the same.
+Everything else stays the same. Your model now classifies live webcam input using the categories you trained on.
 
 ### Option C: PoseNet (detects 17 body keypoints)
+
+PoseNet detects body keypoints (nose, shoulders, wrists, hips, etc.) from webcam video in real time.
 
 ```javascript
 let poseNet, poses = [];
@@ -142,13 +146,12 @@ function draw() {
   if (poses.length > 0) {
     let pose = poses[0].pose;
 
-    // draw a circle at the nose
     fill(255, 0, 0);
     noStroke();
     circle(pose.nose.x, pose.nose.y, 30);
 
-    // available keypoints:
-    // pose.nose, pose.leftEye, pose.rightEye
+    // other available keypoints:
+    // pose.leftEye, pose.rightEye
     // pose.leftShoulder, pose.rightShoulder
     // pose.leftWrist, pose.rightWrist
     // pose.leftHip, pose.rightHip
@@ -161,28 +164,25 @@ function draw() {
 
 ## Step 4: Make the Output Do Something
 
-Displaying a label as text is a starting point. The goal is to use the model's output as a creative material.
+A label in text is a starting point. Connect the model's output to something visual or expressive:
 
-**Using the label to change visuals:**
+**Label → background color:**
 ```javascript
 function draw() {
-  // change background color based on what the model sees
   if (label.includes("person")) {
-    background(50, 50, 200); // blue when a person is detected
+    background(50, 50, 200);
   } else {
-    background(200, 50, 50); // red otherwise
+    background(200, 50, 50);
   }
-  image(video, 0, 0, 320, 240); // smaller video
+  image(video, 0, 0, 320, 240);
 }
 ```
 
-**Using confidence score as a variable:**
+**Confidence score → shape size:**
 ```javascript
 function draw() {
   background(0);
   image(video, 0, 0, width, height);
-
-  // confidence ranges from 0 to 1 — map it to circle size
   let size = map(results[0].confidence, 0, 1, 10, 300);
   fill(255, 200, 0, 150);
   noStroke();
@@ -190,13 +190,12 @@ function draw() {
 }
 ```
 
-**Using pose keypoints to draw:**
+**Pose keypoint → drawing position:**
 ```javascript
 function draw() {
   background(0);
   if (poses.length > 0) {
     let wrist = poses[0].pose.rightWrist;
-    // draw a trail of circles following the right wrist
     fill(255, 100, 0, 100);
     noStroke();
     circle(wrist.x, wrist.y, 40);
@@ -204,15 +203,20 @@ function draw() {
 }
 ```
 
+| Model output | Creative use ideas |
+|-------------|-------------------|
+| Classification label | Change background color, trigger a word, switch between images |
+| Confidence score (0–1) | Control opacity, size, or speed of something on screen |
+| Pose keypoint (x, y) | Draw at that position; measure distance between two points |
+| Your Teachable Machine class | Display different text, change the canvas mood entirely |
+
 ---
 
 ## Step 5: Save and Share
 
-1. Click **File > Save** (sign in to save to your account)
+1. Click **File > Save**
 2. Click **File > Share** → copy the "Sketch" link
-3. Add the link to `links.md` in your GitHub repo
-
-Or: **File > Download** → upload the folder contents to your repo.
+3. In your GitHub repo: click **"Add file"** → **"Create new file"** → name it `links.md` → paste the link → click **"Commit changes"**
 
 ---
 
@@ -224,5 +228,5 @@ Or: **File > Download** → upload the folder contents to your repo.
 | Camera permission denied | Refresh the page and click Allow when prompted |
 | Model loads but nothing classifies | Make sure `classifier.classify(gotResult)` is called inside `modelReady()` |
 | PoseNet runs but no keypoints appear | Check `poses.length > 0` before accessing `poses[0]`; give the model a second to warm up |
-| Teachable Machine URL not working | Make sure you clicked "Upload" in Teachable Machine before copying the link — not just "Export" |
+| Teachable Machine URL not working | Make sure you clicked "Upload my model" before copying the link — not just "Export" |
 | Sketch runs slowly | The video + model is computationally heavy; close other browser tabs |
