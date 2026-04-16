@@ -261,22 +261,22 @@ Once your starter is running, modify the `draw()` function to make the model out
 
 **If you chose Option A (MobileNet), try:**
 
-Change the background color based on the label:
+Use the confidence score to shift the background color — higher confidence means warmer color:
 ```javascript
 function draw() {
-  // change background depending on what the model detects
-  if (label.includes("person")) {
-    background(30, 30, 180);   // blue when a person is seen
-  } else {
-    background(180, 30, 30);   // red otherwise
-  }
+  // map confidence (0 to 1) to a color shift — always changing, always visible
+  let r = map(confidence, 0, 1, 30, 220);
+  let b = map(confidence, 0, 1, 220, 30);
+  background(r, 50, b);
   image(video, 0, 0, 320, 240);   // smaller video in the corner
   fill(255); textSize(18);
   text(label, 10, 260);
 }
 ```
 
-Or use the confidence score to control a shape's size (`confidence` is updated in `gotResult` and available globally):
+> MobileNet does not have "person" as a category — it has very specific ImageNet labels like "laptop", "desk lamp", "coffee mug". Using confidence to drive color works reliably no matter what the model returns.
+
+Or use the confidence score to control a shape's size (`confidence` is a global variable updated by `classifyVideo`):
 ```javascript
 function draw() {
   background(20);
