@@ -31,7 +31,7 @@ These are not edge cases or bugs. They are the predictable result of decisions m
 - [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Chapters, guides, demos, code, and more. Explore, read, experiment based on your interest
 ---
 
-## Session 1 (Day 1): Teachable Machine
+## Session 1 (Day 1): Teachable Machine (Building an Image Classifer)
 
 ### What it is
 
