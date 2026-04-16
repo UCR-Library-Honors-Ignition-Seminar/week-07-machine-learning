@@ -158,7 +158,7 @@ MobileNet is a model pretrained on 1,000 everyday object categories. It reads yo
 
 ```javascript
 // ML5 + p5.js starter: MobileNet image classifier
-// The model reads your webcam and labels what it sees.
+// The model reads your webcam and labels what it sees every 800ms.
 // async/await tells the sketch to wait for the model before classifying.
 
 let classifier, video;
@@ -169,17 +169,22 @@ async function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
   video.hide();
-  // wait for MobileNet to load before starting — this takes 5–10 seconds
+  // wait for MobileNet to load — takes 5–10 seconds
   classifier = await ml5.imageClassifier("MobileNet", video);
   console.log("Model ready!");
   classifyVideo(); // start the classification loop
 }
 
 async function classifyVideo() {
-  let results = await classifier.classify();  // wait for a result
-  label = results[0].label;
-  confidence = results[0].confidence;
-  classifyVideo(); // call again immediately — keeps the loop going
+  let results = await classifier.classify();
+  // only update the label if the model is reasonably confident (> 40%)
+  // this prevents low-confidence guesses from flashing on screen
+  if (results[0].confidence > 0.4) {
+    label = results[0].label;
+    confidence = results[0].confidence;
+  }
+  // wait 800ms before classifying again — gives the model time to stabilize
+  setTimeout(classifyVideo, 800);
 }
 
 function draw() {
@@ -195,6 +200,8 @@ function draw() {
   text(label + " — " + nf(confidence * 100, 2, 1) + "%", 10, height - 30);
 }
 ```
+
+> **Note on MobileNet labels:** MobileNet is trained on 1,000 very specific ImageNet categories — it has "ping pong ball" and "desk lamp" but not "person" or "office." Strange labels are normal and are actually useful data: they show what visual patterns the model was trained to find. If it says "ping pong ball" when you're in the frame, something about your background or clothing matched that pattern in the training data. This is worth noting in your `training-notes.md`.
 
 Click Play. Allow camera access. Wait 5–10 seconds for the model to load. You should see your webcam with a label at the bottom.
 
