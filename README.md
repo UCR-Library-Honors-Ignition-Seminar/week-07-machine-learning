@@ -35,33 +35,54 @@ These are not edge cases or bugs. They are the predictable result of decisions m
 
 ### What it is
 
-[Teachable Machine](https://teachablemachine.withgoogle.com) is a browser-based tool from Google that lets you train an image, sound, or pose classifier using your webcam — no code required. It is a simplified interface to a real machine learning process: you are training an actual neural network.
+[Teachable Machine](https://teachablemachine.withgoogle.com) is a browser-based tool from Google that lets you train an image classifier using images you collect and upload — no code required. It is a simplified interface to a real machine learning process: you are training an actual neural network.
 
-### Train a classifier
+For a quick preview of what Teachable Machine can do, look at this [Rock Paper Scissors demo](https://anastasiasalter.net/Creative-Coding/ml5/index.html) — a gesture classifier built with Teachable Machine and ml5.js.
 
-1. Go to [teachablemachine.withgoogle.com](https://teachablemachine.withgoogle.com)
-2. Click **"Get Started"** → **"Image Project"** → **"Standard image model"**
-3. You will see two classes (Class 1, Class 2) — rename them to what you are distinguishing
-4. Click **"Webcam"** under each class and hold objects/make gestures in front of your camera — collect at least **50 samples per class**
+### Step 1: Choose your categories
+
+Pick **2–3 categories** that are visually distinct but share some similarities — the interesting questions come from the edge cases. Good starting points:
+
+- **Art styles** — Impressionism vs. Cubism (search Google Images or WikiArt)
+- **Architectural styles** — Gothic vs. Modernist buildings
+- **Book or comic cover styles** — sci-fi covers vs. romance covers
+- **Animal species** — two breeds of dog, or dog vs. cat vs. bird
+- **Textures** — smooth vs. rough vs. patterned surfaces
+- **Landscapes vs. cityscapes**
+
+Avoid categories you could only capture with your webcam in one setting — you want enough variety in your images that the model learns the category, not just your desk.
+
+### Step 2: Collect images
+
+Find at least **30–50 images per class** using Google Images, [WikiArt](https://www.wikiart.org), or any image search. Save them to a folder on your computer, organized by category.
+
+**Think about variety as you collect:**
+- Different lighting conditions
+- Different angles or crops
+- Different backgrounds
+- Images from different sources
+
+The images you collect *are* your argument about what the category means. If all your "Impressionism" images are Monet water lilies, the model will learn Monet — not Impressionism.
+
+### Step 3: Train your model
+
+1. Go to [teachablemachine.withgoogle.com/train](https://teachablemachine.withgoogle.com/train)
+2. Click **"Image Project"** → **"Standard image model"**
+3. Rename the classes to match your categories
+4. Click **"Upload"** under each class → select your saved images
 5. Click **"Train Model"** — takes 30–60 seconds
-6. Test in the live preview panel on the right
-
-**Ideas for what to train:**
-- Two hand gestures (thumbs up vs. open palm)
-- Two objects on your desk
-- Two facial expressions
-- "Dark background" vs. "light background" — to show the model learning the wrong thing
+6. Test in the live preview panel on the right — upload a new image the model has not seen
 
 ### Break your model intentionally
 
-After training, try to fool it:
+After training, try to fool it with new images:
 
 | Test | What you are probing |
 |------|---------------------|
-| Show the object at a new angle | Did the model learn shape or just your specific view? |
-| Change the background | Did it learn the object or the setting behind it? |
-| Show something visually similar from the other class | Where is the boundary? |
-| Use the model in bad lighting | How fragile is it? |
+| Upload an image that is ambiguous between two classes | Where is the boundary? What does the model do with uncertainty? |
+| Upload an image from outside your categories entirely | Does it confidently misclassify it? |
+| Upload a low-quality, cropped, or unusual version of a correct category | Did it learn the concept or just the typical presentation? |
+| Upload something with the right color palette but wrong subject | Is it classifying by color or by content? |
 
 **Write down what fails and why** — this is your `training-notes.md` material and the foundation of your reflection.
 
@@ -169,8 +190,9 @@ A label appearing as text is a starting point, not a finished piece. Once you ha
 - [AI Experiment with Googl's Teachable Machine examples](https://teachablemachine.withgoogle.com/faq) — what others have trained
 
 ### Further Reading
-- Kate Crawford, [*Atlas of AI*](https://www.penguinrandomhouse.com/books/621449/atlas-of-ai-by-kate-crawford/) — on the physical and social infrastructure behind machine learning systems
-- Mimi Onuoha, [*A People's Guide to AI*](https://mimionuoha.com/a-peoples-guide-to-ai) — free, accessible zine-style guide to understanding AI for non-specialists
+- Melanie Mitchell, *Artificial Intelligence: A Guide for Thinking Humans* — a clear, non-technical account of what AI systems can and cannot do, and why; directly relevant to understanding Teachable Machine's limitations
+- Kate Crawford, *Atlas of AI* — on the physical, social, and political infrastructure behind machine learning systems
+- Mimi Onuoha, [*A People's Guide to AI*](https://mimionuoha.com/a-peoples-guide-to-ai) — free accessible zine-style introduction to AI for non-specialists
 
 ---
 
