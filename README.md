@@ -100,7 +100,7 @@ After training, try to fool it with new images:
 
 ### How the two libraries connect
 
-You already know p5.js from Week 6 — it draws things on a canvas. **ml5.js** is an add-on library that gives p5.js the ability to run machine learning models. The two always work together:
+You already know p5.js from Week 6 — it draws things on a canvas. **ml5.js** is an add-on library that gives p5.js the ability to run machine learning models. The two can work together:
 
 - **p5.js** handles the canvas, the webcam video, and drawing shapes and text
 - **ml5.js** handles loading the model and classifying what it sees in the webcam feed
@@ -112,9 +112,8 @@ Think of it as: *ml5 listens, p5 responds.*
 
 Before writing any code, look at what people have built with ml5 + p5:
 
-- [Rock Paper Scissors demo](https://anastasiasalter.net/Creative-Coding/ml5/index.html) — a gesture classifier built with Teachable Machine and ml5; the webcam reads your hand, the model decides Rock/Paper/Scissors
 - [ml5.js examples gallery](https://learn.ml5js.org/#/reference/image-classifier) — scroll through the examples on the left; each one shows a live demo and the full code
-- [The Coding Train ml5 playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y) — short videos showing ml5 sketches being built from scratch; good to watch one before class
+- [The Coding Train ml5 playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y) — short videos showing ml5 sketches being built from scratch
 
 **As you look:** What is the model detecting? What does p5 do with that information — what changes on screen?
 
