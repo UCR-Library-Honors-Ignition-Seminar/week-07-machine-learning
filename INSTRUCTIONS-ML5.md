@@ -25,7 +25,7 @@ You need to add ml5.js to the editor. In the editor:
 <head>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
-  <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ml5@0.12.2/dist/ml5.min.js"></script>
 </head>
 ```
 
@@ -76,17 +76,11 @@ function setup() {
   classifier = ml5.imageClassifier("MobileNet", video, modelReady);
 }
 
-function modelReady() {
-  console.log("Model ready!");
-  classifier.classify(gotResult);
-}
-
-// ml5@0.5.2 uses error-first callbacks: (error, results)
-function gotResult(error, results) {
-  if (error) { console.error(error); return; }
+async function classifyVideo() {
+  let results = await classifier.classify(); // wait for a result
   label = results[0].label;
   confidence = results[0].confidence;
-  classifier.classify(gotResult);
+  classifyVideo(); // call again — keeps the loop going
 }
 
 function draw() {
