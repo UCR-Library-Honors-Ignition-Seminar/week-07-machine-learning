@@ -35,9 +35,7 @@ These are not edge cases or bugs. They are the predictable result of decisions m
 
 ### What it is
 
-[Teachable Machine](https://teachablemachine.withgoogle.com) is a browser-based tool from Google that lets you train an image classifier using images you collect and upload — no code required. It is a simplified interface to a real machine learning process: you are training an actual neural network.
-
-For a quick preview of what Teachable Machine can do, look at this [Rock Paper Scissors demo](https://anastasiasalter.net/Creative-Coding/ml5/index.html) — a gesture classifier built with Teachable Machine and ml5.js.
+[Teachable Machine](https://teachablemachine.withgoogle.com) is a browser-based tool from Google that lets you train a computer to recognize your own images, sounds, & poses — no code required. It is a simplified interface to a real machine learning process but you are training an actual neural network. Scroll down on the Teacheble Machine's website to view tutorials and example projects.
 
 ### Step 1: Choose your categories
 
