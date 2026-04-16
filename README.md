@@ -98,78 +98,217 @@ After training, try to fool it with new images:
 
 ## Session 2 (Day 2): ml5.js + p5.js
 
-**ml5.js** is a JavaScript library that wraps complex machine learning models in beginner-friendly functions. It is designed to work alongside p5.js — you can connect a model's output directly to what appears on your canvas.
+### How the two libraries connect
 
-See **[INSTRUCTIONS-ML5.md](INSTRUCTIONS-ML5.md)** for full setup and code walkthroughs.
+You already know p5.js from Week 6 — it draws things on a canvas. **ml5.js** is an add-on library that gives p5.js the ability to run machine learning models. The two always work together:
 
-### Three starting points
+- **p5.js** handles the canvas, the webcam video, and drawing shapes and text
+- **ml5.js** handles loading the model and classifying what it sees in the webcam feed
+- Every time ml5 produces a result (a label, a confidence score, a body position), you use p5 to draw something based on that result
 
-**Option A — MobileNet (pretrained image classifier)**
-MobileNet is trained on 1,000 everyday object categories. Point your webcam at things and see what it recognizes — or misrecognizes.
+Think of it as: *ml5 listens, p5 responds.*
+
+### See it in action first
+
+Before writing any code, look at what people have built with ml5 + p5:
+
+- [Rock Paper Scissors demo](https://anastasiasalter.net/Creative-Coding/ml5/index.html) — a gesture classifier built with Teachable Machine and ml5; the webcam reads your hand, the model decides Rock/Paper/Scissors
+- [ml5.js examples gallery](https://learn.ml5js.org/#/reference/image-classifier) — scroll through the examples on the left; each one shows a live demo and the full code
+- [The Coding Train ml5 playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y) — short videos showing ml5 sketches being built from scratch; good to watch one before class
+
+**As you look:** What is the model detecting? What does p5 do with that information — what changes on screen?
+
+### Step 1: Set up the p5.js editor with ml5
+
+1. Go to [editor.p5js.org](https://editor.p5js.org) and sign in
+2. Click the **arrow icon** next to "Sketch Files" (top left panel)
+3. Click on `index.html` to open it
+4. Find the `<head>` section and add the ml5 script tag so it looks like this:
+
+```html
+<head>
+  <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
+</head>
+```
+
+> ml5 must be loaded **before** p5. Order matters.
+
+5. Click back to `sketch.js` — this is where you write your code
+
+### Step 2: Choose a starter sketch and paste it in
+
+Pick **one** of the two options below. Copy the entire code block, select everything in `sketch.js` (Cmd+A / Ctrl+A), and paste to replace it. Then click Play (▶).
+
+---
+
+**Option A — MobileNet: webcam object classifier**
+
+MobileNet is a model pretrained on 1,000 everyday object categories. It reads your webcam and labels what it sees every frame.
 
 ```javascript
-let classifier, video, label = "loading...";
+// ML5 + p5.js starter: MobileNet image classifier
+// The model reads the webcam and labels what it sees.
+// Change the draw() function to make the label do something visual.
+
+let classifier, video;
+let label = "loading model...";
+let confidence = 0;
+
+function setup() {
+  createCanvas(640, 480);
+  // create a webcam feed
+  video = createCapture(VIDEO);
+  video.hide(); // hide the default HTML video element — we draw it ourselves in draw()
+  // load MobileNet; when ready, start classifying
+  classifier = ml5.imageClassifier("MobileNet", video, modelReady);
+}
+
+function modelReady() {
+  classifier.classify(gotResult); // start the classification loop
+}
+
+function gotResult(results) {
+  label = results[0].label;           // the top prediction
+  confidence = results[0].confidence; // how confident (0 to 1)
+  classifier.classify(gotResult);     // classify again immediately — creates a loop
+}
+
+function draw() {
+  image(video, 0, 0, width, height);  // draw the webcam on the canvas
+
+  // display the label — THIS IS WHAT YOU MODIFY
+  fill(0, 0, 0, 150);
+  noStroke();
+  rect(0, height - 60, width, 60);
+  fill(255);
+  textSize(20);
+  textAlign(LEFT, CENTER);
+  text(label + " — " + nf(confidence * 100, 2, 1) + "%", 10, height - 30);
+}
+```
+
+Click Play. Allow camera access. Wait 5–10 seconds for the model to load. You should see your webcam with a label at the bottom.
+
+---
+
+**Option B — PoseNet: body keypoint tracker**
+
+PoseNet detects 17 body positions (nose, shoulders, wrists, hips, ankles) from your webcam in real time.
+
+```javascript
+// ML5 + p5.js starter: PoseNet body tracker
+// The model finds body keypoints in the webcam feed.
+// Use the keypoint positions (x, y) to draw things on screen.
+
+let poseNet, poses = [];
+let video;
 
 function setup() {
   createCanvas(640, 480);
   video = createCapture(VIDEO);
   video.hide();
-  classifier = ml5.imageClassifier("MobileNet", video, () => {
-    classifier.classify(gotResult);
+  // load PoseNet; when ready it will continuously update poses[]
+  poseNet = ml5.poseNet(video, modelReady);
+  poseNet.on("pose", function(results) {
+    poses = results; // update poses every time a new detection comes in
   });
 }
-function gotResult(results) {
-  label = results[0].label;
-  classifier.classify(gotResult);
+
+function modelReady() {
+  console.log("PoseNet ready!");
 }
+
 function draw() {
-  image(video, 0, 0);
-  fill(255); noStroke(); textSize(24);
-  text(label, 10, height - 20);
-}
-```
+  image(video, 0, 0, width, height);
 
-**Option B — Your Teachable Machine model**
-Export your trained model from Teachable Machine and load it in ml5.js:
+  if (poses.length > 0) {             // only draw if a body is detected
+    let pose = poses[0].pose;         // get the first detected person
 
-1. In Teachable Machine: click **"Export Model"** → **"Tensorflow.js"** → **"Upload (shareable link)"**
-2. Copy the model URL
-3. Replace `"MobileNet"` in the code above with your model URL
+    // draw a circle at the nose — THIS IS WHAT YOU MODIFY
+    fill(255, 100, 0);
+    noStroke();
+    circle(pose.nose.x, pose.nose.y, 40);
 
-**Option C — PoseNet (body tracking)**
-PoseNet detects 17 body keypoints (nose, shoulders, wrists, hips, etc.) from webcam video. Use body position to control what appears on screen.
-
-```javascript
-let poseNet, poses = [];
-
-function setup() {
-  createCanvas(640, 480);
-  let video = createCapture(VIDEO);
-  video.hide();
-  poseNet = ml5.poseNet(video, () => console.log("model ready"));
-  poseNet.on("pose", results => { poses = results; });
-}
-function draw() {
-  background(0);
-  if (poses.length > 0) {
-    let nose = poses[0].pose.nose;
-    fill(255, 100, 0); noStroke();
-    circle(nose.x, nose.y, 40);
-    // try: wrists, ankles, shoulders — poses[0].pose.leftWrist, etc.
+    // other keypoints you can use:
+    // pose.leftWrist    pose.rightWrist
+    // pose.leftShoulder pose.rightShoulder
+    // pose.leftHip      pose.rightHip
+    // pose.leftAnkle    pose.rightAnkle
+    // pose.leftEye      pose.rightEye
   }
 }
 ```
 
-### Make the output do something creative
+Click Play. Allow camera access. Stand back so your upper body is visible. You should see an orange circle tracking your nose.
 
-A label appearing as text is a starting point, not a finished piece. Once you have a model running, connect its output to something:
+---
 
-| Model output | Creative use |
-|-------------|-------------|
-| Classification label | Change background color, trigger a word, switch between two images |
-| Confidence score (0–1) | Control opacity, size, speed of something on screen |
-| Pose keypoint (x, y) | Draw at that position; use distance between two points to control a variable |
-| Your Teachable Machine class | Display different text, play different sounds, change the canvas entirely |
+### Step 3: Make it do something
+
+Once your starter is running, modify the `draw()` function to make the model output drive something visual. **Do not start from scratch — change one thing at a time.**
+
+**If you chose Option A (MobileNet), try:**
+
+Change the background color based on the label:
+```javascript
+function draw() {
+  // change background depending on what the model detects
+  if (label.includes("person")) {
+    background(30, 30, 180);   // blue when a person is seen
+  } else {
+    background(180, 30, 30);   // red otherwise
+  }
+  image(video, 0, 0, 320, 240);   // smaller video in the corner
+  fill(255); textSize(18);
+  text(label, 10, 260);
+}
+```
+
+Or use the confidence score to control a shape's size:
+```javascript
+function draw() {
+  background(20);
+  image(video, 0, 0, width, height);
+  // confidence goes from 0 to 1 — map it to a circle diameter
+  let diameter = map(confidence, 0, 1, 20, 300);
+  fill(255, 200, 0, 150);
+  noStroke();
+  circle(width / 2, height / 2, diameter);
+  fill(255); textSize(16);
+  text(label, 10, height - 10);
+}
+```
+
+**If you chose Option B (PoseNet), try:**
+
+Draw a trail wherever your right wrist goes:
+```javascript
+function draw() {
+  // no background() — so shapes accumulate and leave a trail
+  if (poses.length > 0) {
+    let wrist = poses[0].pose.rightWrist;
+    fill(255, 100, 0, 80);
+    noStroke();
+    circle(wrist.x, wrist.y, 30);
+  }
+}
+```
+
+Or use wrist height to change the background mood:
+```javascript
+function draw() {
+  if (poses.length > 0) {
+    let wrist = poses[0].pose.rightWrist;
+    // wrist.y is 0 at top, 480 at bottom — map to a color
+    let col = map(wrist.y, 0, height, 255, 0);
+    background(0, col, 255 - col);
+    image(video, 0, 0, 320, 240);
+  }
+}
+```
+
+**The pattern is always the same:** get a value from ml5 (a label, a confidence number, an x/y position) → use it as a variable in p5 (a color, a size, a position). Start with one substitution, see what it does, then change something else.
 
 ---
 
