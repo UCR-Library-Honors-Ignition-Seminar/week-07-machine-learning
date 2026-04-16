@@ -120,18 +120,29 @@ Before writing any code, look at what people have built with ml5 + p5:
 ### Step 1: Set up the p5.js editor with ml5
 
 1. Go to [editor.p5js.org](https://editor.p5js.org) and sign in
-2. Click the **arrow icon** below the Play button (top left panel)
+2. Click the **arrow icon** next to "Sketch Files" (top left panel)
 3. Click on `index.html` to open it
-4. Find the `<head>` section and add the ml5 script tag so it looks like this:
+4. Select **all** the existing content (Cmd+A / Ctrl+A) and replace it with the complete code below:
 
 ```html
-<head>
-  <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.min.js"></script>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.13/lib/addons/p5.sound.min.js"></script>
+    <script src="https://unpkg.com/ml5@0.5.2/dist/ml5.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <main>
+    </main>
+    <script src="sketch.js"></script>
+  </body>
+</html>
 ```
 
-> ml5 must be loaded **before** p5. Order matters.
+> The only addition to the default file is the ml5 line — but replacing the whole file is simpler than finding exactly where to insert it. Use `ml5@0.5.2` specifically — newer versions changed the API and will cause a `classifier.classify is not a function` error.
 
 5. Click back to `sketch.js` — this is where you write your code
 
