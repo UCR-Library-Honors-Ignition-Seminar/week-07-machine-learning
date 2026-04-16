@@ -23,7 +23,7 @@ A machine learning model does not understand the world the way you do. It finds 
 - A medical image classifier trained mostly on light-skinned patients performs worse on dark-skinned patients
 - A content moderation model trained on English text struggles with other languages — not because it was designed to, but because the training corpus was imbalanced
 
-These are not edge cases or bugs. They are the predictable result of decisions made when assembling training data. This week you will make those decisions yourself — on a small scale — and feel what they mean.
+These are not edge cases or bugs. They are the predictable result of decisions made when assembling training data. This week you will make those decisions yourself — on a small scale — and experience what they mean.
 
 ### Recommended viewing before class
 
@@ -48,11 +48,11 @@ Pick **2–3 categories** that are visually distinct but share some similarities
 - **Textures** — smooth vs. rough vs. patterned surfaces
 - **Landscapes vs. cityscapes**
 
-Avoid categories you could only capture with your webcam in one setting — you want enough variety in your images that the model learns the category, not just your desk.
+If you are using your webcam, avoid categories you could only capture with your webcam in one setting/background — you want enough variety in your images that the model learns the category.
 
 ### Step 2: Collect images
 
-Find at least **30–50 images per class** using Google Images, [WikiArt](https://www.wikiart.org), or any image search. Save them to a folder on your computer, organized by category.
+Find at least **10 images per class** using Google Images, [WikiArt](https://www.wikiart.org), or any image search. Save them to a folder on your computer, organized by category (Experiment with uploading more or less images per class)
 
 **Think about variety as you collect:**
 - Different lighting conditions
@@ -69,7 +69,7 @@ The images you collect *are* your argument about what the category means. If all
 3. Rename the classes to match your categories
 4. Click **"Upload"** under each class → select your saved images
 5. Click **"Train Model"** — takes 30–60 seconds
-6. Test in the live preview panel on the right — upload a new image the model has not seen
+6. Test in the live preview panel — upload a new image the model has not seen
 
 ### Break your model intentionally
 
