@@ -112,7 +112,7 @@ Think of it as: *ml5 listens, p5 responds.*
 
 Before writing any code, look at what people have built with ml5 + p5:
 
-- [ml5.js examples gallery](https://docs.ml5js.org/#/reference/overview) — scroll through the examples on the left; each one shows a live demo and the full code
+- [ml5.js examples gallery](https://ml5js.org/learn/) — scroll through the examples; each one shows a live demo and the full code
 - [The Coding Train ml5 playlist](https://www.youtube.com/playlist?list=PLRqwX-V7Uu6YPSwT06y_AEYTqIwbeam3y) — short videos showing ml5 sketches being built from scratch
 
 **As you look:** What is the model detecting? What does p5 do with that information — what changes on screen?
@@ -328,14 +328,13 @@ function draw() {
 ### Tools
 - [Teachable Machine](https://teachablemachine.withgoogle.com) — browser-based, no account needed
 - [ml5.js](https://ml5js.org) — library reference and examples
-- [ml5.js Learn](https://learn.ml5js.org) — official tutorials
+- [ml5.js Learn](https://ml5js.org/learn/) — official tutorials
 - [p5.js Web Editor](https://editor.p5js.org) — where you write and run your sketch
 
 ### Examples and Context
 - [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Gene Kogan's visual introduction to ML for creative practitioners
 - [Gender Shades](http://gendershades.org/) — Joy Buolamwini's facial recognition bias research
-- [*Coded Bias* documentary](https://www.codedbias.com/) — film following the Gender Shades research
-- [AI Experiment with Googl's Teachable Machine examples](https://teachablemachine.withgoogle.com/faq) — what others have trained
+- [Teachable Machine experiments](https://experiments.withgoogle.com/search?q=Teachable%20Machine) — what others have built and trained
 
 ### Further Reading
 - Melanie Mitchell, *Artificial Intelligence: A Guide for Thinking Humans* — a clear, non-technical account of what AI systems can and cannot do, and why; directly relevant to understanding Teachable Machine's limitations
