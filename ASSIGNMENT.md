@@ -15,13 +15,18 @@ Read the **Background** section in [README.md](README.md) and look at the [Gende
 Using [Teachable Machine](https://teachablemachine.withgoogle.com/train):
 
 1. Choose **2–3 categories** to distinguish (art styles, architectural styles, animal species, etc.)
-2. Collect at least **10 images per class** from Google Images, [WikiArt](https://www.wikiart.org), or another image source — save them organized by category
+2. Collect at least **30–50 images per class** from Google Images, [WikiArt](https://www.wikiart.org), or another image source — organize them into folders by category before uploading
 3. In Teachable Machine: upload your images under each class, then click **"Train Model"**
 4. Test with new images the model has not seen — upload edge cases and ambiguous examples to see where it fails
-5. Screenshot your training interface showing your classes and sample count
-6. Fill in `training-notes.md` (see below)
+5. Take screenshots as you go — of your training interface, test results, and anything interesting that comes up
 
-This step is required even if you use a pretrained model for Part 2 — the decisions you make collecting and labeling data are what make the reflection meaningful.
+**How to upload your screenshots to GitHub:**
+1. In your GitHub Classroom repo, click **"Add file"** → **"Upload files"**
+2. Drag all your screenshots into the upload box at once
+3. In the filename field that appears, type `screenshots/` before each filename to create a folder — GitHub will create it automatically
+4. Click **"Commit changes"**
+
+> **Tip:** Give your screenshots descriptive names before uploading so you can tell them apart later — for example `training-classes.png`, `test-failure.png`, `confusion-matrix.png`.
 
 ---
 
@@ -46,22 +51,13 @@ Build an interactive sketch that uses machine learning as a creative material.
 
 ---
 
-## training-notes.md
-
-In your GitHub repo, click **"Add file"** → **"Create new file"** → name it `training-notes.md`. Answer the following (~100 words total):
-
-1. What categories did you train your model to distinguish?
-2. Where did you collect your images — what sources, and roughly how many per class?
-3. What did you deliberately leave out or not vary in your dataset?
-4. What broke your model when you tested it, and why do you think it failed there?
-
----
-
 ## Reflection
 
 Write a **~300-word reflection** by editing `reflection.md` in your repo using the [reflection template](reflection-template.md).
 
-**This week's critical prompt (Part 3 of the template):**
+The template this week has **5 sections**, including a **Training Data Log** (Section 2) that replaces a separate notes file — answer the data questions there, then the critical prompt (Section 4) asks you to connect those decisions to real-world ML implications.
+
+**This week's critical prompt (Section 4 of the template):**
 
 > *What did you include in your training data? What did you leave out? What might a model trained on your data misunderstand — and what does that tell you about how ML systems work in the real world?*
 
@@ -73,10 +69,9 @@ Connect your own data collection decisions to a real-world ML system. If your da
 
 Before submitting, confirm your repo contains:
 
-- [ ] `links.md` with your p5.js sketch share link
-- [ ] Screenshot of your Teachable Machine training interface
-- [ ] `training-notes.md` with all 4 questions answered
-- [ ] `reflection.md` with all 4 sections filled in
+- [ ] `screenshots/` folder with at least one screenshot of your Teachable Machine training interface
+- [ ] `links.md` — your p5.js sketch share link
+- [ ] `reflection.md` — all 5 sections filled in (including the Training Data Log in Section 2)
 
 Then paste your GitHub repo URL into the Canvas assignment and submit.
 
@@ -86,10 +81,10 @@ Then paste your GitHub repo URL into the Canvas assignment and submit.
 
 | Criterion | Points |
 |-----------|--------|
-| Teachable Machine model trained + training screenshot included | 0.5 |
+| Teachable Machine model trained + screenshots uploaded | 0.5 |
 | ml5.js sketch runs and responds to live webcam input | 1.5 |
 | Model output drives something beyond a text label | 0.5 |
-| `training-notes.md` documents data collection choices and failures | 0.5 |
-| Reflection: all 4 sections, ~300 words | 1 |
+| Reflection Section 2 (Training Data Log): data choices and failures documented | 0.5 |
+| Reflection: all 5 sections, ~300 words | 1 |
 | Reflection connects personal data decisions to real-world ML implications | 0.5 |
 | **Total** | **5** |
