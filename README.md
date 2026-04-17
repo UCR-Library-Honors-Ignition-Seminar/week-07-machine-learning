@@ -33,6 +33,8 @@ They are the predictable result of decisions made when assembling training data.
 
 ## Session 1 (Day 1): Teachable Machine (Building an Image Classifer)
 
+> **In-class activities:** [INCLASS-ACTIVITIES.md](INCLASS-ACTIVITIES.md)
+
 ### What it is
 
 [Teachable Machine](https://teachablemachine.withgoogle.com) is a browser-based tool from Google that lets you train a computer to recognize your own images, sounds, & poses — no code required. It is a simplified interface to a real machine learning process but you are training an actual neural network. Scroll down on the Teacheble Machine's website to view tutorials and example projects.
