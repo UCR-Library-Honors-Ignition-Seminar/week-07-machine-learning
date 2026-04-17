@@ -8,16 +8,15 @@ These activities are designed to be done during class — some individually, som
 
 ### Activity 1: Train an Intentionally Biased Model (~20 min)
 
-Your goal is to train a model that fails in a predictable way — on purpose.
+Your goal is to train a model that "fails" in a predictable way — on purpose.
 
 1. Go to [Teachable Machine](https://teachablemachine.withgoogle.com/train) and start a new **Image Project → Standard image model**
-2. Choose a 2-class category where you can control what the model sees — for example:
+2. Choose a 2-class category — for example:
    - "cat" — but only upload images of orange cats for Class 1 and only black cats for Class 2
    - "chair" — office chairs for Class 1, outdoor/lawn chairs for Class 2
    - "landscape" — paintings of landscapes vs. photographs of landscapes
-3. Collect 30–40 images per class from Google Images or [WikiArt](https://www.wikiart.org), keeping your restriction strict
-4. Train the model, then test it with images that cross your restriction — upload a grey cat, a rocking chair, an aerial photograph
-5. Screenshot what breaks
+3. Collect at least 10 images per class from Google Images or [WikiArt](https://www.wikiart.org), or other online sources (pay attention to copyrights and licenses)
+4. Train the model, then test it with images similar to your class — upload a grey cat, a rocking chair, an aerial photograph
 
 **As you work, think about:**
 - Does the model learn the category, or does it learn the visual patterns you happened to show it?
@@ -25,18 +24,17 @@ Your goal is to train a model that fails in a predictable way — on purpose.
 
 ---
 
-### Activity 2: Model Gallery Swap (~15 min)
+### Activity 2: Group Discussion (~15 min)
 
 Do this after everyone has trained a model.
 
-1. Stand up and move to a different seat — you are now at someone else's computer with their trained model open
-2. Your job: try to fool it. Upload images that are visually similar to the wrong class, or images from outside the categories entirely
-3. Write down in your notes: what fooled it, and what didn't
-4. Return to your own seat. Your neighbor will tell you what they found
+1. Form a a group with at least two members (you can move around)e a
+2. Discuss in groups what you have observed in Activity 1 and document the discussion
+3. Select a group member to share your discussion with the class
 
 **As you discuss:**
 - What did your model learn that you didn't intend?
-- What does it take for an image to "look like" your category to the model — versus what it means to a human?
+- How is "learning" for machines different from for humans?
 
 ---
 
