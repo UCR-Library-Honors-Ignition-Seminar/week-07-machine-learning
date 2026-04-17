@@ -23,7 +23,7 @@ A machine learning model does not understand the world the way you do. It finds 
 - A medical image classifier trained mostly on light-skinned patients performs worse on dark-skinned patients
 - A content moderation model trained on English text struggles with other languages — not because it was designed to, but because the training corpus was imbalanced
 
-These are not edge cases or bugs. They are the predictable result of decisions made when assembling training data. This week you will make those decisions yourself — on a small scale — and experience what they mean.
+They are the predictable result of decisions made when assembling training data. This week you will make those decisions yourself — on a small scale — and experience what they mean.
 
 ### Recommended viewing before class
 
@@ -68,10 +68,10 @@ The images you collect *are* your argument about what the category means. If all
 2. Click **"Image Project"** → **"Standard image model"**
 3. Rename the classes to match your categories
 4. Click **"Upload"** under each class → select your saved images
-5. Click **"Train Model"** — takes 30–60 seconds
-6. Test in the live preview panel — upload a new image the model has not seen
+5. Click **"Train Model"**
+6. Test in the live preview panel by uploading a new image the model has not seen
 
-### Break your model intentionally
+### "Break" your model intentionally
 
 After training, try to fool it with new images:
 
@@ -142,7 +142,6 @@ Before writing any code, look at what people have built with ml5 + p5:
 </html>
 ```
 
-> The only addition to the default file is the ml5 line — but replacing the whole file is simpler than finding exactly where to insert it. Use `ml5@0.12.2` specifically — this is the version the starter code is written for.
 
 5. Click back to `sketch.js` — this is where you write your code
 
@@ -257,7 +256,7 @@ Click Play. Allow camera access. Stand back so your upper body is visible. You s
 
 ### Step 3: Make it do something
 
-Once your starter is running, modify the `draw()` function to make the model output drive something visual. **Do not start from scratch — change one thing at a time.**
+Once your starter is running, modify the `draw()` function to make the model output drive something visual.
 
 **If you chose Option A (MobileNet), try:**
 
@@ -273,8 +272,6 @@ function draw() {
   text(label, 10, 260);
 }
 ```
-
-> MobileNet does not have "person" as a category — it has very specific ImageNet labels like "laptop", "desk lamp", "coffee mug". Using confidence to drive color works reliably no matter what the model returns.
 
 Or use the confidence score to control a shape's size (`confidence` is a global variable updated by `classifyVideo`):
 ```javascript
@@ -325,21 +322,12 @@ function draw() {
 
 ## Resources
 
-### Tools
 - [Teachable Machine](https://teachablemachine.withgoogle.com) — browser-based, no account needed
 - [ml5.js](https://ml5js.org) — library reference and examples
 - [ml5.js Learn](https://ml5js.org/learn/) — official tutorials
 - [p5.js Web Editor](https://editor.p5js.org) — where you write and run your sketch
-
-### Examples and Context
-- [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Gene Kogan's visual introduction to ML for creative practitioners
-- [Gender Shades](http://gendershades.org/) — Joy Buolamwini's facial recognition bias research
+- [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/)
 - [Teachable Machine experiments](https://experiments.withgoogle.com/search?q=Teachable%20Machine) — what others have built and trained
-
-### Further Reading
-- Melanie Mitchell, *Artificial Intelligence: A Guide for Thinking Humans* — a clear, non-technical account of what AI systems can and cannot do, and why; directly relevant to understanding Teachable Machine's limitations
-- Kate Crawford, *Atlas of AI* — on the physical, social, and political infrastructure behind machine learning systems
-- Mimi Onuoha, [*A People's Guide to AI*](https://mimionuoha.com/a-peoples-guide-to-ai) — free accessible zine-style introduction to AI for non-specialists
 
 ---
 
