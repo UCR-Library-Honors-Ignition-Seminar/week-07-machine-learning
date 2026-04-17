@@ -15,7 +15,7 @@ Read the **Background** section in [README.md](README.md) and look at the [Gende
 Using [Teachable Machine](https://teachablemachine.withgoogle.com/train):
 
 1. Choose **2–3 categories** to distinguish (art styles, architectural styles, animal species, etc.)
-2. Collect at least **30–50 images per class** from Google Images, [WikiArt](https://www.wikiart.org), or another image source — save them organized by category
+2. Collect at least **10 images per class** from Google Images, [WikiArt](https://www.wikiart.org), or another image source — save them organized by category
 3. In Teachable Machine: upload your images under each class, then click **"Train Model"**
 4. Test with new images the model has not seen — upload edge cases and ambiguous examples to see where it fails
 5. Screenshot your training interface showing your classes and sample count
