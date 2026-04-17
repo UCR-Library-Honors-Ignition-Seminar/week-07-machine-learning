@@ -13,7 +13,7 @@
 
 ## 2. Training Data Log
 
-*Answer each question in 1–3 sentences. This replaces the separate `training-notes.md`.*
+*Answer each question in 1–3 sentences.*
 
 **What categories did you train your model to distinguish?**
 
@@ -35,7 +35,7 @@
 
 *This is the heart of your reflection. Build on your Training Data Log above.*
 
-> *What did you include in your training data? What did you leave out? What might a model trained on your data misunderstand — and what does that tell you about how ML systems work in the real world?*
+> * What does your reflection in your Training Data Log tell you about how ML systems work in the real world?*
 
 *Your response (~150–200 words):*
 
