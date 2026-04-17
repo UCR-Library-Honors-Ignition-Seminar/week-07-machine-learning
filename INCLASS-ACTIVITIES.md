@@ -69,5 +69,4 @@ You do not need to understand the whole sketch. The goal is to change one thing,
 
 **After everyone has tried something, discuss:**
 - What did you change, and what happened?
-- The model itself didn't change — only how p5 displays its output. What does that suggest about the difference between what a model "sees" and how we choose to present it?
-- If you were designing a tool that used this model — a camera app, a museum installation, a hiring tool — what would you choose to show the user, and what would you hide?
+- Have you seen apps or devices that use AI to label or detect something? What are they? Does this exercise change your perception/understanding of those applications?
