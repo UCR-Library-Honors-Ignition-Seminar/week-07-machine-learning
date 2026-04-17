@@ -100,6 +100,8 @@ After training, try to fool it with new images:
 
 ## Session 2 (Day 2): ml5.js + p5.js
 
+> **In-class activities:** [INCLASS-ACTIVITIES.md](INCLASS-ACTIVITIES.md)
+
 ### How the two libraries connect
 
 You already know p5.js from Week 6 — it draws things on a canvas. **ml5.js** is an add-on library that gives p5.js the ability to run machine learning models. The two can work together:
