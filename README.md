@@ -82,7 +82,7 @@ After training, try to fool it with new images:
 | Upload a low-quality, cropped, or unusual version of a correct category | Did it learn the concept or just the typical presentation? |
 | Upload something with the right color palette but wrong subject | Is it classifying by color or by content? |
 
-**Write down what fails and why** — this is your `training-notes.md` material and the foundation of your reflection.
+**Write down what fails and why** — take screenshots of interesting failures and note them in your `reflection.md` Training Data Log (Section 2).
 
 ### Key vocabulary
 
@@ -196,7 +196,7 @@ function draw() {
 }
 ```
 
-> **Note on MobileNet labels:** MobileNet is trained on 1,000 very specific ImageNet categories — it has "ping pong ball" and "desk lamp" but not "person" or "office." Strange labels are normal and are actually useful data: they show what visual patterns the model was trained to find. If it says "ping pong ball" when you're in the frame, something about your background or clothing matched that pattern in the training data. This is worth noting in your `training-notes.md`.
+> **Note on MobileNet labels:** MobileNet is trained on 1,000 very specific ImageNet categories — it has "ping pong ball" and "desk lamp" but not "person" or "office." Strange labels are normal and are actually useful data: they show what visual patterns the model was trained to find. If it says "ping pong ball" when you're in the frame, something about your background or clothing matched that pattern in the training data. This is worth noting in the Training Data Log section of your `reflection.md`.
 
 Click Play. Allow camera access. Wait 5–10 seconds for the model to load. You should see your webcam with a label at the bottom.
 
