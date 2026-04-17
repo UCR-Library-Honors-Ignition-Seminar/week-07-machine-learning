@@ -161,17 +161,20 @@ function draw() {
 
 A label in text is a starting point. Connect the model's output to something visual or expressive:
 
-**Label → background color:**
+**Confidence → background color:**
 ```javascript
 function draw() {
-  if (label.includes("person")) {
-    background(50, 50, 200);
-  } else {
-    background(200, 50, 50);
-  }
+  // map confidence (0 to 1) to a color — always changing, always visible
+  let r = map(confidence, 0, 1, 30, 220);
+  let b = map(confidence, 0, 1, 220, 30);
+  background(r, 50, b);
   image(video, 0, 0, 320, 240);
+  fill(255); textSize(18);
+  text(label, 10, 260);
 }
 ```
+
+> MobileNet does not have "person" as a category. Use confidence to drive color — it works reliably no matter what the model returns.
 
 **Confidence score → shape size:**
 ```javascript
