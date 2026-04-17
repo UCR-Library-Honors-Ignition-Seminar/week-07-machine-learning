@@ -28,8 +28,8 @@ Your goal is to train a model that "fails" in a predictable way — on purpose.
 
 Do this after everyone has trained a model.
 
-1. Form a a group with at least two members (you can move around)e a
-2. Discuss in groups what you have observed in Activity 1 and document the discussion
+1. Form a group with at least two members
+2. Discuss what you observed in Activity 1 and document the discussion
 3. Select a group member to share your discussion with the class
 
 **As you discuss:**
@@ -40,51 +40,34 @@ Do this after everyone has trained a model.
 
 ## Session 2 Activities — ml5 + p5
 
-### Activity 3: MobileNet Bestiary (~15 min, before coding)
+### Activity 3: What Does MobileNet See? (~20 min, no coding required)
 
-Before writing any code, run the MobileNet starter from [README.md](README.md) and spend 10 minutes pointing your webcam at objects around the room.
+Your instructor will have the MobileNet starter running on the projector, or you can run it yourself from [README.md](README.md) — just paste and click Play, no changes needed.
 
-In your notes, write down every label that appears. Then answer:
+Point the webcam at different objects around the room and watch the labels change. In your notes, write down:
+- 5 labels that surprised you
+- 2 objects the model got completely wrong — what did it say instead?
+- 1 object it seemed confident about
 
-- What categories does MobileNet seem to know well?
-- What is missing or misidentified?
-- What does the list of labels tell you about where this model came from and who made it?
+Then discuss as a class:
 
-MobileNet was trained on [ImageNet](https://www.image-net.org/) — a dataset assembled mostly from Western internet images in the early 2010s. You are reading that history backwards through its labels.
-
----
-
-### Activity 4: Same Model, Different Response (~30 min)
-
-Everyone starts with the **identical MobileNet starter** from README. Set a 20-minute timer.
-
-Your goal: make the model's output drive something completely different in `draw()` — not just change a color, but make it do something unexpected or expressive.
-
-Some starting points if you are stuck:
-- Make text appear that responds to the label — not the label itself, but something the label makes you think of
-- Make the canvas react differently to high-confidence vs. low-confidence readings
-- Let the label trigger a change that accumulates over time instead of resetting every frame (remove `background()` from `draw()`)
-
-**When the timer ends:** everyone shares their screen for 60 seconds with no explanation — just show it. Same input data, different outputs. Notice the range.
-
-**After sharing, discuss:**
-- What choices did you make about what the model's output *means*?
-- Did the model's behavior (its weird labels, its confidence scores) push your sketch in a direction you didn't expect?
+- What categories does MobileNet seem to know well? What is missing?
+- MobileNet was trained on [ImageNet](https://www.image-net.org/) — a dataset assembled mostly from Western internet images in the early 2010s. Looking at the labels it produces, what can you infer about who collected that data and what their world looked like?
+- When a facial recognition system is trained on a similarly skewed dataset and then used in a hiring algorithm or a police system — what happens?
 
 ---
 
-### Activity 5: Pose Portrait (~30 min, PoseNet)
+### Activity 4: Change One Thing (~20 min)
 
-Use the PoseNet starter from [README.md](README.md). In 20 minutes, make your body position create or change something on screen — not just track a dot, but make the movement mean something.
+Get the MobileNet starter running (paste the code from [README.md](README.md) into `sketch.js` and click Play). Once it is working, make **one small change** to the `draw()` function — pick any of these:
 
-**Some directions to consider:**
-- Your wrist draws something as you move — what does it draw?
-- The distance between two keypoints (e.g., left and right wrist) controls a property of the canvas
-- Raising your hands vs. lowering them changes the mood or color of the scene
-- Your nose position triggers different words or sounds
+- Change the numbers in `background(r, 50, b)` to different values and see how the colors shift
+- Change `textSize(20)` to a much larger or smaller number
+- Change `rect(0, height - 60, width, 60)` — try making the bar taller, or moving it to the top
 
-**When the timer ends:** everyone performs their sketch for 30 seconds — stand in front of your screen, move, let the sketch respond. No explanation needed; the work speaks.
+You do not need to understand the whole sketch. The goal is to change one thing, see what happens, and notice that you can affect how the model's output appears on screen.
 
-**Afterward:**
-- Did the model's keypoints feel like an accurate representation of your body?
-- What could you not express because of what PoseNet tracks — and what does that limitation mean?
+**After everyone has tried something, discuss:**
+- What did you change, and what happened?
+- The model itself didn't change — only how p5 displays its output. What does that suggest about the difference between what a model "sees" and how we choose to present it?
+- If you were designing a tool that used this model — a camera app, a museum installation, a hiring tool — what would you choose to show the user, and what would you hide?
