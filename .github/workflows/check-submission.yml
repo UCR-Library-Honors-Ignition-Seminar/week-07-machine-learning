@@ -1,6 +1,19 @@
 name: Check Submission
 
-on: [push]
+on:
+  push:
+    paths:
+      - 'reflection.md'
+      - 'links.md'
+      - 'screenshots/**'
+      - '**.html'
+      - '**.png'
+      - '**.jpg'
+      - '**.jpeg'
+      - '**.gif'
+      - '**.pdf'
+      - '**.mp4'
+      - '**.svg'
 
 jobs:
   check:
