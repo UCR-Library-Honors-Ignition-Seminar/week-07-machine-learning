@@ -47,5 +47,18 @@
 
 ---
 
-> **Total target: ~300 words across all sections.**
-> You are encouraged to use AI tools (ChatGPT, Claude) to help **format** this Markdown — just make sure the ideas and critical thinking are your own.
+## 6. AI Use
+
+*In 1–2 sentences: Did you use any AI tools (beyond Teachable Machine and ml5.js) while completing this assignment? If so, how?*
+
+> **Examples:**
+> - "Used Claude to fix a JavaScript error in my p5.js sketch."
+> - "Asked ChatGPT to explain what a confidence score is."
+> - "Used Claude to format this reflection as Markdown."
+> - "Did not use AI this week beyond the required tools."
+
+This section does not affect your grade — it's a documentation habit.
+
+---
+
+> **Total target: ~300 words across sections 1–5.**
