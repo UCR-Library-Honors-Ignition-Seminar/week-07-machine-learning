@@ -1,0 +1,16 @@
+---
+title: "Week 7: Machine Learning & Creative AI — Slides"
+format:
+  html:
+    theme: cosmo
+    page-layout: article
+---
+
+Presentation decks for both class sessions. Open in a browser; use arrow keys, `S` for speaker view, `F` for fullscreen.
+
+- [Session 1 — Training a Classifier with Teachable Machine](session-1-teachable-machine.html)
+- [Session 2 — ml5.js + p5.js](session-2-ml5-p5.html)
+
+---
+
+Source: [`slides/`](https://github.com/UCR-Library-Honors-Ignition-Seminar/week-07-machine-learning/tree/main/slides) · rendered with [Quarto](https://quarto.org).

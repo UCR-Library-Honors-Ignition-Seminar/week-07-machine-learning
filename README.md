@@ -2,7 +2,7 @@
 
 **Instructor:** Jing
 
-**Slides:** [`slides/`](slides/) — Quarto reveal.js decks for both sessions (`quarto render slides`)
+**Slides:** [**View the decks**](https://ucr-library-honors-ignition-seminar.github.io/week-07-machine-learning/) · [source](slides/)
 
 ---
 
