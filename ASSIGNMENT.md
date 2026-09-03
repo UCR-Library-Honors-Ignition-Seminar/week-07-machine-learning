@@ -21,7 +21,7 @@ Using [Teachable Machine](https://teachablemachine.withgoogle.com/train):
 5. Take screenshots as you go — of your training interface, test results, and anything interesting that comes up
 
 **How to upload your screenshots to GitHub:**
-1. In your GitHub Classroom repo, click **"Add file"** → **"Upload files"**
+1. In your Classroom 50 repo, click **"Add file"** → **"Upload files"**
 2. Drag all your screenshots into the upload box at once
 3. In the filename field that appears, type `screenshots/` before each filename to create a folder — GitHub will create it automatically
 4. Click **"Commit changes"**
