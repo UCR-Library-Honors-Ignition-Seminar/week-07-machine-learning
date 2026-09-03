@@ -1,0 +1,23 @@
+project:
+  title: "Week 7 — Machine Learning & Creative AI"
+  output-dir: _output
+
+format:
+  revealjs:
+    theme: [default, assets/slides.scss]
+    slide-number: true
+    incremental: true
+    transition: slide
+    background-transition: fade
+    progress: true
+    chalkboard: true
+    footer: "Machine Learning & Creative AI · UCR Library"
+    logo: logo.png
+    width: 1280
+    height: 720
+
+author:
+  - name: "Jing Han"
+    email: jingh@ucr.edu
+    affiliations:
+      - name: "Digital Scholarship Librarian · UCR eScholarship Liaison"

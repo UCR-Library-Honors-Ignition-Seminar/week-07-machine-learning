@@ -2,6 +2,8 @@
 
 **Instructor:** Jing
 
+**Slides:** [`slides/`](slides/) — Quarto reveal.js decks for both sessions (`quarto render slides`)
+
 ---
 
 ## Learning Objectives

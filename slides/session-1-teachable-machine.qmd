@@ -1,0 +1,174 @@
+---
+title: "Machine Learning & Creative AI"
+subtitle: "Session 1 — Training a Classifier with Teachable Machine"
+---
+
+## Opening question {.center}
+
+A model looks at a photo and says: **"Cubism — 98% confident."**
+
+. . .
+
+It has never seen a painting. It has never heard the word *Cubism*.
+
+. . .
+
+So what did it actually learn?
+
+## What models actually learn
+
+Not concepts. Not meaning.
+
+. . .
+
+**Statistical patterns** in the examples they were shown —
+edges, colors, textures, co-occurrences.
+
+. . .
+
+::: {.gold-box}
+Your training data is your argument.
+:::
+
+## This is not hypothetical {.smaller}
+
+- **Hiring tools** trained on past résumés (mostly men) learned to downrank women
+- **Medical imaging** classifiers do worse on darker skin — trained on lighter-skinned datasets
+- **Content moderation** misses harm in non-English text — the corpus was mostly English
+
+. . .
+
+Nobody programmed these biases. They came from **what was in the data**.
+
+## Gender Shades
+
+Buolamwini & Gebru, 2018 — tested commercial gender classifiers.
+
+. . .
+
+- Lighter-skinned men: ~1% error
+- Darker-skinned women: up to **35%** error
+
+. . .
+
+Same code. Different faces. The gap was in the training set.
+
+## Today {.smaller}
+
+1. **Vocabulary** — 5 terms — 5 min
+2. **Train** an intentionally biased model — 20 min
+3. **Break it** on purpose — failure testing — 10 min
+4. **Discuss** in groups — 15 min
+5. **Pretrained models** — what's next session — 10 min
+6. **Bridge** + exit ticket — 10 min
+
+## Vocabulary {.smaller}
+
+- **Training data** — the examples you show the model while it learns
+- **Class** — one category the model sorts into
+- **Confidence score** — how strongly it picks a class (0–100%) — *not* a measure of correctness
+- **Overfitting** — memorizing the exact examples instead of the general idea
+- **Bias** — a class systematically over- or under-represented in the data
+
+# Hands-on {background-color="#003da5"}
+
+Individual · 20 minutes
+
+## Teachable Machine
+
+A browser tool from Google. Trains a real neural network on **your** images — no code.
+
+. . .
+
+<teachablemachine.withgoogle.com/train> → **Image Project** → **Standard image model**
+
+## Exercise — train a biased model {background-color="#ffb81c"}
+
+*Individual · 20 min*
+
+1. Pick **2 classes** with a hidden bias baked in —
+   *e.g. "cat" but all orange vs. all black · "chair" but all office vs. all lawn*
+2. Collect **10+ images per class** (Google Images, WikiArt — mind copyright)
+3. **Train.** Then test with images that are *similar but not the same*.
+
+**Record:** did it learn the category — or the color / background / lighting?
+
+## Break it on purpose {.smaller}
+
+| Feed it… | To find out… |
+|---|---|
+| an ambiguous image | where its decision boundary sits |
+| something in **neither** class | whether it says "I don't know" *(it won't)* |
+| a blurry / cropped version | if it learned the concept or memorized pixels |
+| wrong subject, **same palette** | whether color or content drives the call |
+
+. . .
+
+Screenshot the confident failures. Those go in your Training Data Log.
+
+## Discuss — groups of 2+
+
+*15 min · pick someone to report back*
+
+1. What did your model learn that you **didn't intend**?
+2. How is this different from how a **person** learns a category?
+3. Your model was never "unsure." What does that tell you about confidence scores?
+
+## Confidence ≠ accuracy {.center}
+
+A model always returns a number.
+
+. . .
+
+"92%" means *"this matches my training patterns strongly"* —
+not *"I am probably right."*
+
+. . .
+
+It cannot tell you it wasn't taught enough.
+
+## Transition {.center}
+
+You just trained one model from scratch on ~20 images.
+
+. . .
+
+Next session: you borrow one trained on **1.2 million**.
+
+## Pretrained models — a preview
+
+**MobileNet** — recognizes 1,000 everyday object categories out of the box.
+
+. . .
+
+Trained on **ImageNet** — images scraped from the Western internet, early 2010s.
+
+. . .
+
+That origin is baked in. We'll watch it surface next session.
+
+## Bridge to Session 2
+
+Session 2: **ml5.js + p5.js** —
+
+> "ml5 listens, p5 responds."
+
+. . .
+
+You'll pipe a live webcam through a model and turn its output into something visual.
+
+## Before you go
+
+**Exit ticket** — one sentence:
+
+> A model trained only on *your* camera roll — what would it misunderstand about the world?
+
+. . .
+
+**Assignment preview:** train a 2–3 class model (30–50 images each) + an ml5 sketch. Details Thursday.
+
+# Thank you {background-color="#003da5"}
+
+**Jing Han** · Digital Scholarship Librarian · UCR eScholarship Liaison
+
+<jingh@ucr.edu>

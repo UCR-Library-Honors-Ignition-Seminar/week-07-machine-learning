@@ -1,0 +1,169 @@
+---
+title: "Machine Learning & Creative AI"
+subtitle: "Session 2 — ml5.js + p5.js: Models as Material"
+---
+
+## Recap + hook {.center}
+
+Tuesday: you trained a model and watched it fail on purpose.
+
+. . .
+
+Today: you take a model trained on a million images
+and let it **drive a drawing** — live, from your webcam.
+
+## The architecture
+
+Two libraries, one sketch:
+
+. . .
+
+- **p5.js** — the canvas: shapes, color, motion, interaction
+- **ml5.js** — the model: loads it, runs it, hands back results
+
+. . .
+
+::: {.callout-box}
+ml5 listens. p5 responds.
+:::
+
+## Setup
+
+1. <editor.p5js.org> — sign in (needed for webcam)
+2. Replace `index.html` with the boilerplate *(CDN links for p5, p5.sound, ml5)*
+3. Write your code in `sketch.js`
+
+. . .
+
+Boilerplate + starters: **`INCLASS-ACTIVITIES.md`**
+
+## Today {.smaller}
+
+1. **MobileNet** starter — what does it see? — 20 min
+2. **Discuss** ImageNet & representation — 10 min
+3. **PoseNet** — body as input — 10 min
+4. **Change one thing**, then make it drive visuals — 25 min
+5. **Share screens** — 10 min
+6. **Synthesis** + bridge to Week 8 — 10 min
+
+# Hands-on {background-color="#003da5"}
+
+Class + individual
+
+## Starter A — MobileNet
+
+Classifies whatever the webcam sees, every 500ms. Returns a **label** + **confidence**.
+
+```javascript
+classifier = await ml5.imageClassifier("MobileNet", video);
+// await = wait for the model to load before classifying
+```
+
+1,000 categories — and some are oddly specific: *"ping pong ball," "desk lamp," "hamper."*
+
+## Exercise — what does MobileNet see? {background-color="#ffb81c"}
+
+*~20 min · run the starter, point the webcam around the room*
+
+Record:
+
+- **5** surprising labels
+- **2** confident misidentifications
+- **1** thing it nails every time
+
+. . .
+
+Weird labels aren't bugs — they're the training data showing through.
+
+## Discuss — class
+
+*10 min*
+
+1. What kinds of things is MobileNet **good** at? What's it blind to?
+2. ImageNet was built from the **Western internet, ~2010**. What does that predict about whose objects, homes, and faces it recognizes?
+3. Where does this exact failure mode show up in **hiring** or **policing** tools?
+
+## Starter B — PoseNet
+
+Finds **17 body keypoints** in real time — nose, shoulders, wrists, hips, ankles, eyes.
+
+```javascript
+poseNet = ml5.poseNet(video, modelReady);
+poseNet.on("pose", results => { poses = results; });
+// then read pose.nose, pose.leftWrist, ... as {x, y}
+```
+
+Your body becomes a set of coordinates you can draw with.
+
+## The universal pattern {.center}
+
+**Extract an ml5 value → use it as a p5 variable.**
+
+. . .
+
+confidence → color · confidence → size
+
+keypoint x, y → shape position
+
+drop `background()` → the shapes leave a trail
+
+## Exercise — change one thing, then more {background-color="#ffb81c"}
+
+*Individual · 25 min*
+
+**First:** load a starter, change **one** thing — background, text size, the confidence bar. Run it. See what moved.
+
+. . .
+
+**Then push it:** make the model's output *drive something visual* — the label picks a color, a wrist moves a circle, confidence scales a shape. Not just printed text.
+
+## Share screens
+
+*10 min*
+
+Show your sketch running live.
+
+Say: **which ml5 value** are you reading, and **what p5 thing** does it move?
+
+## Debrief
+
+- What did your one change reveal about how the sketch works?
+- Can you name a **real product** that is this same pipeline — camera in, classification out, action taken?
+- Did building it change how you feel about being on the other side of one?
+
+## Synthesis — Week 7 {.smaller}
+
+- Models **pattern-match**; they don't understand
+- What's **in** and **out** of the training set is a creative and political choice
+- "Confident" is not "correct"
+- A model is a **material** you can compose with — like color or sound
+
+## Assignment
+
+Due end of Week 7:
+
+- **Teachable Machine model** — 2–3 classes · 30–50+ images each · screenshots in `screenshots/`
+- **ml5.js sketch** — live webcam · output must **drive visuals or text**, not just label · link in `links.md`
+- **`reflection.md`** — ~300 words, 5 sections
+
+## Reflection prompt
+
+> What did you include in your training data? What did you leave out? What might a model trained on your data misunderstand — and what does that tell you about how ML systems work in the real world?
+
+## Bridge to Week 8
+
+Every model this term ran on **someone else's server** — Google's, ours, a company's.
+
+. . .
+
+Next week: you download one and run it on **your own machine**. No internet. No logging.
+
+. . .
+
+Who controls the tool — and does that change how you use it?
+
+# Thank you {background-color="#003da5"}
+
+**Jing Han** · Digital Scholarship Librarian · UCR eScholarship Liaison
+
+<jingh@ucr.edu>
