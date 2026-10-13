@@ -81,10 +81,10 @@ Then paste your GitHub repo URL into the Canvas assignment and submit.
 
 | Criterion | Points |
 |-----------|--------|
-| Teachable Machine model trained + screenshots uploaded | 0.5 |
-| ml5.js sketch runs and responds to live webcam input | 1.5 |
-| Model output drives something beyond a text label | 0.5 |
-| Reflection Section 2 (Training Data Log): data choices and failures documented | 0.5 |
+| Teachable Machine model trained + screenshots uploaded | 1 |
+| ml5.js sketch runs and responds to live webcam input | 2 |
+| Model output drives something beyond a text label | 1 |
+| Reflection Section 2 (Training Data Log): data choices and failures documented | 1 |
 | Reflection: all 5 sections, ~300 words | 1 |
-| Reflection connects personal data decisions to real-world ML implications | 0.5 |
-| **Total** | **5** |
+| Reflection connects personal data decisions to real-world ML implications | 1 |
+| **Total** | **7** |
