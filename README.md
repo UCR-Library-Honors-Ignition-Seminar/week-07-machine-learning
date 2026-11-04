@@ -33,7 +33,7 @@ They are the predictable result of decisions made when assembling training data.
 - [ml4a — Machine Learning for Artists](https://ml4a.github.io/ml4a/) — Chapters, guides, demos, code, and more. Explore, read, experiment based on your interest
 ---
 
-## Session 1 (Day 1): Teachable Machine (Building an Image Classifer)
+## Session 1 (Day 1): Teachable Machine (Building an Image Classifier)
 
 > **In-class activities:** [INCLASS-ACTIVITIES.md](INCLASS-ACTIVITIES.md)
 
